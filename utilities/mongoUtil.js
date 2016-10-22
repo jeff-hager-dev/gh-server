@@ -15,5 +15,11 @@ module.exports = {
             _db = db;
             console.log("Mongo Connected!");
         })
+    },
+    resources: function() {
+        return _db.collection("resource");
+    },
+    clients: function(){
+        return _db.collection("client");
     }
 }
