@@ -14,9 +14,17 @@ util.getSession = (body) =>{
 };
 
 util.getResult = (body)=>{
-    var Result = {};
-    console.log('result body: ', body);
-    return Result;
+    var result = {};
+    result.sessionId = body.result.sessionId;
+    result.callId = body.result.callId;
+    result.state = body.result.state;
+    result.sessionDuration = body.result.sessionDuration;
+    result.sequence = body.result.sequence;
+    result.complete = body.result.complete;
+    result.error = body.result.error;
+    result.userType = body.result.userType;
+    result.actions = body.result.actions;
+    return result;
     
 };
 

@@ -3,10 +3,10 @@ var self = module.exports = (function(){
 
 
     return {
-        getCaller: function(number){
+        getCallerInfo: function(number){
             return calls[number];
         },
-        addCaller: function(number, data){
+        addCallerInfo: function(number, data){
             calls[number] = data;
         },
         removeCaller: function(number){
