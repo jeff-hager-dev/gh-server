@@ -1,0 +1,15 @@
+{
+  "name": "ServiceSaintLouis",
+  "version": "1.0.0",
+  "description": "GlobalHack 6 - Service Saint Louis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CodeNoEvil",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.9"
+  }
+}
