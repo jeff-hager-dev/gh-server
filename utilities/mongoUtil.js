@@ -10,6 +10,7 @@ module.exports = {
             if (err) {
                 console.log(err);
                 console.log("Connection to mongo failed. Check for running server");
+                process.exit(1);
                 return;
             }
             _db = db;

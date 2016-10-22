@@ -22,7 +22,7 @@ module.exports = function(req, res){
 
     // Action classes can be passes as parameters to TropoWebAPI class methods.
     //       (choices, attempts, bargein, minConfidence, name, recognizer, required, say, timeout, voice);
-    tropo.ask(choices, 3,        false,    null,       "choice", null, true, say, 5, 'allison', 4.0, 0.1);
+    tropo.ask(choices, 3,        true,    null,       "choice", null, true, say, 5, 'allison', 4.0, 0.1);
 
     tropo.on("continue", null, states.next, true);
     tropo.on("error", null, states.end, true);

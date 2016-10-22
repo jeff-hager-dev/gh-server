@@ -36,11 +36,7 @@ app.get("/resource/:type/:subType", function(req, res) {
 
 app.get("/client", function(req, res){
    mongoUtil.clients()
-       .find({
-           firstName: new RegExp(".*"+nullCoalese(req.query.firstName) +".*"),
-           lastName: new RegExp(".*"+nullCoalese(req.query.lastName)+".*"),
-           ssn: new RegExp(".*"+nullCoalese(req.query.ssn)+".*"),
-       }, {fields: {_id: 0}})
+       .find(searchObject(req.query), {fields: {_id: 0}})
        .toArray(function (err, docs) {
            var clients = docs.map(function(client){
               return client;
@@ -49,11 +45,27 @@ app.get("/client", function(req, res){
        });
 });
 
+app.post("/client", function (req, res) {
+    var client = req.body;
+    mongoUtil.clients()
+        .insertOne(client);
+    res.statusCode = 200;
+    res.send();
+});
+
 app.listen(3000, function () {
     console.log('App listening on port 3000!');
 });
 
-function nullCoalese(val){
+function GetRegex(val){
     var value = (val == undefined ? '' : val);
-    return value;
+    return new RegExp(".*"+value +".*", 'i');
+}
+
+function searchObject(query){
+    return {
+        firstName: GetRegex(query.firstName),
+        lastName: GetRegex(query.lastName),
+        ssn: GetRegex(query.ssn),
+    }
 }
