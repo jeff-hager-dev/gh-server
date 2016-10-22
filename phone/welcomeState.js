@@ -14,7 +14,7 @@ module.exports = function(req, res){
 
     calls.addCallerInfo(session.callId, questions[0]);
 
-
+    tropo.say("Welcome to Service St.Louis Help line");
     // Demonstrates how to use the base Tropo action classes.
     var say = new Say(questions[0].Text);
     var choiceStr = _.map(questions[0].Choices, "options").join(',');

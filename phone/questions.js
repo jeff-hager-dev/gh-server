@@ -1,7 +1,7 @@
 module.exports = [
     {
         "ID": "Welcome",
-        "Text": "Welcome to Service St.Louis Help line. What can I help you with? Your options are Food, Transportation, Shelter",
+        "Text": "Menu: 1.Food, 2.Transportation, 3.Shelter",
         "Choices": [
             {"option": 1, "nextState": "Food"},
             {"option": 2, "nextState": "Transportation"},
@@ -10,15 +10,16 @@ module.exports = [
     },
     {
         "ID": "Food",
-        "Text": "These are your food options",
+        "Text": "These are your food options: 1. EBT, 2. Soup Kitchen, 3. Grocery Assistance",
         "Choices": [
             {"option": 1, "nextState": "End"},
-            {"option": 2, "nextState": "End"}
+            {"option": 2, "nextState": "End"},
+            {"option": 3, "nextState": "End"}
         ]
     },
     {
         "ID": "Transport",
-        "Text": "Do you need help with public transportation",
+        "Text": "Transport options: 1. Free, 2. Public",
         "Choices": [
             {"option": 1, "nextState": "End"},
             {"option": 2, "nextState": "End"}
