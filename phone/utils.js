@@ -32,24 +32,24 @@ util.getResult = function(body) {
 };
 
 util.getNextQuestionID = function(lastId, result) {
-   // console.log("lastId " + lastId);
-    console.log("result ", result.actions.value);
     var choices = _.find(questions, function(elt) {
         return elt.ID === lastId;
     }).Choices;
     
-    console.log("choices ", choices);
     
-    return _.find(choices, function(elt) {
-       return elt.option == result.actions.value;
-    }).nextState;
+    var chosen = _.find(choices, function(elt) {
+        return elt.option == result.actions.value;
+    });
+    
+    
+    return chosen.nextState;
 };
 
 util.getNextQuestion = function(lastId, result) {
     var ID = util.getNextQuestionID(lastId, result);
     return _.find(questions, function(elt) {
         return elt.ID == ID;
-    })
-}
+    });
+};
 
 module.exports = util;

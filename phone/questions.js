@@ -17,7 +17,7 @@ module.exports = [
         ]
     },
     {
-        "ID": "Transport",
+        "ID": "Transportation",
         "Text": "Do you need help with public transportation",
         "Choices": [
             {"option": 1, "nextState": "End"},
