@@ -10,7 +10,7 @@ module.exports = function(req, res){
     var tropo = new tropowebapi.TropoWebAPI();
 
     var session = utils.getSession(req.body);
-    console.log('Caller ', session.callId);
+    console.log('Caller ', session.callId, ' starting at the welcome state');
 
     calls.addCaller(session.callId, questions.Welcome);
 
@@ -25,6 +25,7 @@ module.exports = function(req, res){
     tropo.ask(choices, 3,        false,    null,       "choice", null, true, say, 5, 'allison', 4.0, 0.1);
 
     tropo.on("continue", null, states.next, true);
+    tropo.on("error", null, states.end, true);
 
 	  res.end(TropoJSON(tropo));
 };
