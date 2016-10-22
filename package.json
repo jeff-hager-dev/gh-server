@@ -4,12 +4,14 @@
   "description": "GlobalHack 6 - Service Saint Louis",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "CodeNoEvil",
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
-    "mongodb": "^2.2.9"
+    "http-status": "^0.2.3",
+    "mongodb": "^2.2.9",
+    "tropo-webapi": "^1.2.0"
   }
 }
