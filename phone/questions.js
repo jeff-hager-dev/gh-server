@@ -55,12 +55,12 @@ module.exports = [
     },
     {
       "ID": "Call",
-      "Type": "Call",
+      "Type": "call",
       "nextState": "End"
     },
     {
         "ID": "End",
-        "Type": "End",
+        "Type": "end",
         "Text": "Thank you for calling the Service St.Louis Help line"
     }
 ];
