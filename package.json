@@ -4,7 +4,7 @@
   "description": "GlobalHack 6 - Service Saint Louis",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "author": "CodeNoEvil",
   "license": "ISC",
@@ -13,5 +13,8 @@
     "http-status": "^0.2.3",
     "mongodb": "^2.2.9",
     "tropo-webapi": "^1.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
