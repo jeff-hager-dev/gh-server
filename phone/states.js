@@ -2,6 +2,7 @@ var base = '/api/phone';
 
 module.exports = {
     "welcome": base +"/welcome",
-    "answer": base+"/answer",
-    "health": base+"/health"
+    "next": base+"/next",
+    "health": base+"/health",
+    "left": base+"/left"
 };
