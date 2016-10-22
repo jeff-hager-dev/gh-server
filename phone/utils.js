@@ -1,6 +1,9 @@
+var questions = require("./questions");
+var _ = require('lodash');
+
 var util  = {};
 
-util.getSession = (body) =>{
+util.getSession =  function(body){
     var session = {};
     session.sessionId = body.session.id;
     session.callId = body.session.callId;
@@ -13,7 +16,11 @@ util.getSession = (body) =>{
     return session;
 };
 
+<<<<<<< HEAD
 util.getResult = (body)=>{
+=======
+util.getResult = function(body) {
+>>>>>>> 4d58ddcfde75aec1b23449729e5370fc13508556
     var result = {};
     result.sessionId = body.result.sessionId;
     result.callId = body.result.callId;
@@ -25,7 +32,31 @@ util.getResult = (body)=>{
     result.userType = body.result.userType;
     result.actions = body.result.actions;
     return result;
+<<<<<<< HEAD
+=======
     
 };
+
+util.getNextQuestionID = function(lastId, result) {
+   // console.log("lastId " + lastId);
+    console.log("result ", result.actions.value);
+    var choices = _.find(questions, function(elt) {
+        return elt.ID === lastId;
+    }).Choices;
+    
+    console.log("choices ", choices);
+>>>>>>> 4d58ddcfde75aec1b23449729e5370fc13508556
+    
+    return _.find(choices, function(elt) {
+       return elt.option == result.actions.value;
+    }).nextState;
+};
+
+util.getNextQuestion = function(lastId, result) {
+    var ID = util.getNextQuestionID(lastId, result);
+    return _.find(questions, function(elt) {
+        return elt.ID == ID;
+    })
+}
 
 module.exports = util;
