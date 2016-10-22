@@ -7,8 +7,9 @@ var calls = require('./calls');
 var questions = require('./questions');
 var _ = require('lodash');
 var config = require('./config');
+var httpStatusCode = require('http-status');
 
-var _processStaticQuestion = function (result, res, currentQuestion) {
+var _processStaticQuestion = function (result, currentQuestion) {
   var tropo = new tropowebapi.TropoWebAPI();
 
 
@@ -30,7 +31,7 @@ var _processStaticQuestion = function (result, res, currentQuestion) {
 };
 
 
-var _processDynamicQuestion = function (result, res, question) {
+var _processDynamicQuestion = function (result, question) {
 };
 
 var _processEnd = function () {
@@ -65,5 +66,5 @@ module.exports = function (req, res) {
     tropo = _processEnd();
   }
 
-  res.status(200).end(TropoJSON(tropo));
+  res.status(httpStatusCode.OK).end(TropoJSON(tropo));
 };

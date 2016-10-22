@@ -51,6 +51,7 @@ module.exports = [
       "Text": " You need help with Housing Assistance what would you like to know",
       "nextState": "call",
       "Choices": [
+          {"option": 1, "nextState": "call", "phoneNumber": 11231231234},
       ]
     },
     {
