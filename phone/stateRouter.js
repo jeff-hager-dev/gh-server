@@ -11,7 +11,7 @@ module.exports = function(req, res){
   var result = utils.getResult(req.body);
   console.log(result);
 
-  var lastQuestion = calls.getCaller(result.callId);
+  var lastQuestion = calls.getCallerInfo(result.callId);
 
   console.log("caller question: ", lastQuestion.ID);
 

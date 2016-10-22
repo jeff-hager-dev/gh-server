@@ -10,14 +10,17 @@ module.exports = function(req, res){
     var tropo = new tropowebapi.TropoWebAPI();
 
     var session = utils.getSession(req.body);
+
     console.log('Caller ', session.callId, ' starting at the welcome state');
 
-    calls.addCaller(session.callId, questions.Welcome);
+    calls.addCallerInfo(session.callId, questions.Welcome);
 
 
     // Demonstrates how to use the base Tropo action classes.
     var say = new Say(questions.Welcome.Text);
+
     var choiceStr = _.map(questions.Welcome.Choices, "options").join(',');
+
     var choices = new Choices("[1 DIGITS]");
 
     // Action classes can be passes as parameters to TropoWebAPI class methods.
