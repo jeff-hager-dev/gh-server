@@ -1,23 +1,27 @@
-var express = require('express');
-var phoneController = express.Router();
 var utils = require('./utils');
 var states = require('./states');
 var tropowebapi = require('tropo-webapi');
+var calls = require('./calls');
+var questions = require('./questions');
+var _ = require('lodash');
 
 module.exports = function(req, res){
-        var tropo = new tropowebapi.TropoWebAPI();
-    console.log(req.body);
+    console.log('test');
+    var tropo = new tropowebapi.TropoWebAPI();
+
     var session = utils.getSession(req.body);
+
+    calls.addCaller(session.callId, {});
 	    	
-	tropo.say("Welcome to Service St. Louis.");
+	  tropo.say(questions.Welcome.Text);
 
     // Demonstrates how to use the base Tropo action classes.
-    var say = new Say("Please enter your 5 digit zip code.");
-    var choices = new Choices("[5 DIGITS]");
+    console.log(_.map(questions.Welcome.Choices, "option").join(','));
+    var choices = new Choices(_.map(questions.Welcome.Choices, "options").join(','));
 
     // Action classes can be passes as parameters to TropoWebAPI class methods.
     tropo.ask(choices, 3, false, null, "foo", null, true, say, 5, null);
-    tropo.on("continue", null, states.answer, true);
+    tropo.on("continue", null, states.next, true);
 
-	res.end(TropoJSON(tropo)); 
+	  res.end(TropoJSON(tropo));
 };

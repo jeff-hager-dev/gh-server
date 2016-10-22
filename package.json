@@ -9,8 +9,10 @@
   "author": "CodeNoEvil",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "http-status": "^0.2.3",
+    "lodash": "^4.16.4",
     "mongodb": "^2.2.9",
     "tropo-webapi": "^1.2.0"
   },

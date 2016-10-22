@@ -18,6 +18,6 @@ util.getResult = (body)=>{
     console.log('result body: ', body);
     return Result;
     
-}
+};
 
 module.exports = util;
