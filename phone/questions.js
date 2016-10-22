@@ -2,6 +2,7 @@ module.exports = [
     {
         "ID": "Welcome",
         "Text": "Menu: 1.Food, 2.Transportation, 3.Housing",
+        "Type": "static",
         "Choices": [
             {"option": 1, "nextState": "Food"},
             {"option": 2, "nextState": "Transportation"},
@@ -10,7 +11,7 @@ module.exports = [
     },
     {
         "ID": "Food",
-        "Type": "Question",
+        "Type": "static",
         "Text": "These are your food options: 1. E.B.T, 2. Soup Kitchen, 3. Grocery Assistance",
         "Choices": [
             {"option": 1, "nextState": "End"},
@@ -20,7 +21,7 @@ module.exports = [
     },
     {
         "ID": "Transportation",
-        "Type": "Question",
+        "Type": "static",
         "Text": "Transportation options: 1. Free, 2. Public",
         "Choices": [
             {"option": 1, "nextState": "End"},
@@ -29,7 +30,7 @@ module.exports = [
     },
     {
         "ID": "Housing",
-        "Type": "Question",
+        "Type": "static",
         "Text": " What kind of help do you need for housing: 1. Shelter, 2. Housing Assistance",
         "Choices": [
             {"option": 1, "nextState": "Shelter"},
@@ -38,21 +39,28 @@ module.exports = [
     },
     {
       "ID": "Shelter",
-      "Type": "Process",
+      "Type": "dynamic",
       "Text": " What would  you like to know about Shelter",
+      "nextState": "call",
       "Choices": [
       ]
     },
     {
       "ID": "HousingAssistance",
-      "Type": "Process",
+      "Type": "dynamic",
       "Text": " You need help with Housing Assistance what would you like to know",
+      "nextState": "call",
       "Choices": [
       ]
     },
     {
+      "ID": "Call",
+      "Type": "Call",
+      "nextState": "End"
+    },
+    {
         "ID": "End",
-        "Text": "Thank you for calling the Service St.Louis Help line",
-        "Choices": []
+        "Type": "End",
+        "Text": "Thank you for calling the Service St.Louis Help line"
     }
 ];
