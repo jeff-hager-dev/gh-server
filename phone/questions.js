@@ -40,6 +40,7 @@ module.exports = [
     {
       "ID": "Shelter",
       "Type": "dynamic",
+      "HelpType": "Shelter",
       "Text": " What would  you like to know about Shelter",
       "nextState": "call",
       "Choices": [

@@ -8,6 +8,7 @@ var questions = require('./questions');
 var _ = require('lodash');
 var config = require('./config');
 var httpStatusCode = require('http-status');
+var _processDynamicQuestion = require('./processDynamicQuestion');
 
 var _processStaticQuestion = function (result, currentQuestion) {
   var tropo = new tropowebapi.TropoWebAPI();
@@ -30,9 +31,6 @@ var _processStaticQuestion = function (result, currentQuestion) {
   return tropo;
 };
 
-
-var _processDynamicQuestion = function (result, question) {
-};
 
 var _processEnd = function () {
 
@@ -57,7 +55,9 @@ module.exports = function (req, res) {
   }
 
   if (currentQuestion.Type === 'dynamic') {
-    tropo = _processStaticQuestion(result, res, currentQuestion);
+    return _processDynamicQuestion(result, res, function(err, tObj){
+      res.status(httpStatusCode.OK).end(TropoJSON(tObj));
+    });
   }
   if (currentQuestion.Type === 'call') {
     tropo = _processCall(result, res, currentQuestion);
