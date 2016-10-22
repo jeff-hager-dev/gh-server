@@ -4,5 +4,5 @@ module.exports = {
     "welcome": base +"/welcome",
     "next": base+"/next",
     "health": base+"/health",
-    "left": base+"/left"
+    "end": base+"/end"
 };
