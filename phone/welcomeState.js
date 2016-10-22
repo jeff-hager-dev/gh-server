@@ -18,7 +18,7 @@ module.exports = function(req, res){
     // Demonstrates how to use the base Tropo action classes.
     var say = new Say(questions.Welcome.Text);
     var choiceStr = _.map(questions.Welcome.Choices, "options").join(',');
-    var choices = new Choices(choiceStr);
+    var choices = new Choices("[1 DIGITS]");
 
     // Action classes can be passes as parameters to TropoWebAPI class methods.
     //       (choices, attempts, bargein, minConfidence, name, recognizer, required, say, timeout, voice);
