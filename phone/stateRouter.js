@@ -4,6 +4,7 @@ var tropowebapi = require('tropo-webapi');
 var calls = require('./calls');
 var questions = require('./questions');
 var _ = require('lodash');
+var config = require('./config');
 
 
 module.exports = function(req, res){
@@ -33,7 +34,7 @@ module.exports = function(req, res){
   console.log("currentQuestion ", currentQuestion);
   
   // Action classes can be passes as parameters to TropoWebAPI class methods.
-  tropo.ask(choices, 3, false, null, "foo", null, true, say, 5, null);
+  tropo.ask(choices, 3, false, null, "choice", null, true, say, 5, config.voice);
 
   tropo.on("continue", null, states.next, true);
   tropo.on("error", null, states.end, true);
