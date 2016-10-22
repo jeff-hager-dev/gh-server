@@ -16,11 +16,7 @@ util.getSession =  function(body){
     return session;
 };
 
-<<<<<<< HEAD
-util.getResult = (body)=>{
-=======
 util.getResult = function(body) {
->>>>>>> 4d58ddcfde75aec1b23449729e5370fc13508556
     var result = {};
     result.sessionId = body.result.sessionId;
     result.callId = body.result.callId;
@@ -32,8 +28,6 @@ util.getResult = function(body) {
     result.userType = body.result.userType;
     result.actions = body.result.actions;
     return result;
-<<<<<<< HEAD
-=======
     
 };
 
@@ -45,7 +39,6 @@ util.getNextQuestionID = function(lastId, result) {
     }).Choices;
     
     console.log("choices ", choices);
->>>>>>> 4d58ddcfde75aec1b23449729e5370fc13508556
     
     return _.find(choices, function(elt) {
        return elt.option == result.actions.value;
