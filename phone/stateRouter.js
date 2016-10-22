@@ -43,7 +43,17 @@ var _processEnd = function () {
   return tropo;
 };
 
-var _processCall = function(res, question){};
+var _processCall = function(result, question){
+  console.log("calling=====", question);
+  var phoneNumber = _.find(question.Choices, function(elt) {
+    return elt.option == result.actions.value;
+  }).phoneNumber;
+  
+  console.log("phoneNumber " + phoneNumber);
+  var tropo = new tropowebapi.TropoWebAPI();
+  tropo.transfer(phoneNumber);
+  return tropo;
+};
 
 module.exports = function (req, res) {
   var result = utils.getResult(req.body);
@@ -53,14 +63,14 @@ module.exports = function (req, res) {
   var tropo = null;
 
   if (currentQuestion.Type === 'static') {
-    tropo = _processStaticQuestion(result, res, currentQuestion);
+    tropo = _processStaticQuestion(result, currentQuestion);
   }
 
   if (currentQuestion.Type === 'dynamic') {
-    tropo = _processStaticQuestion(result, res, currentQuestion);
+    tropo = _processStaticQuestion(result, currentQuestion);
   }
   if (currentQuestion.Type === 'call') {
-    tropo = _processCall(result, res, currentQuestion);
+    tropo = _processCall(result, lastQuestion);
   }
   if (currentQuestion.Type === 'end') {
     tropo = _processEnd();

@@ -33,7 +33,7 @@ util.getResult = function(body) {
 
 util.getNextQuestionID = function(lastId, result) {
     var choices = _.find(questions, function(elt) {
-        return elt.ID === lastId;
+        return elt.ID == lastId;
     }).Choices;
     
     
@@ -41,7 +41,7 @@ util.getNextQuestionID = function(lastId, result) {
         return elt.option == result.actions.value;
     });
     
-    
+    console.log("chosen ", chosen);
     return chosen.nextState;
 };
 
