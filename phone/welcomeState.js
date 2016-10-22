@@ -12,7 +12,7 @@ module.exports = function(req, res){
     var session = utils.getSession(req.body);
     console.log('Caller ', session.callId, ' starting at the welcome state');
 
-    calls.addCaller(session.callId, questions[0]);
+    calls.addCallerInfo(session.callId, questions[0]);
 
 
     // Demonstrates how to use the base Tropo action classes.
@@ -22,7 +22,7 @@ module.exports = function(req, res){
 
     // Action classes can be passes as parameters to TropoWebAPI class methods.
     //       (choices, attempts, bargein, minConfidence, name, recognizer, required, say, timeout, voice);
-    tropo.ask(choices, 3,        true,    null,       "choice", null, true, say, 5, 'allison', 4.0, 0.1);
+    tropo.ask(choices, 3,        false,    null,       "choice", null, true, say, 5, 'allison', 4.0, 0.1);
 
     tropo.on("continue", null, states.next, true);
     tropo.on("error", null, states.end, true);

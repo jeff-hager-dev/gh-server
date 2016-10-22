@@ -11,11 +11,20 @@ module.exports = function(req, res){
   var result = utils.getResult(req.body);
  // console.log(result);
 
-  var lastQuestion = calls.getCaller(result.callId);
+  var lastQuestion = calls.getCallerInfo(result.callId);
   var currentQuestion = utils.getNextQuestion(lastQuestion.ID, result);
- // console.log("caller question: ", lastQuestion.ID);
+
 
   var tropo = new tropowebapi.TropoWebAPI();
+  if(currentQuestion.ID === "End" || !currentQuestion){
+    console.log('end');
+    tropo.on("continue", null, states.end, true);
+    tropo.on("error", null, states.end, true);
+
+    res.end(TropoJSON(tropo));
+    return;
+  }
+
 
   var say = new Say(currentQuestion.Text);
   
@@ -29,5 +38,6 @@ module.exports = function(req, res){
   tropo.on("continue", null, states.next, true);
   tropo.on("error", null, states.end, true);
 
+  calls.addCallerInfo(result.callId, currentQuestion);
   res.end(TropoJSON(tropo));
 };
