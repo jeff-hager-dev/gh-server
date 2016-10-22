@@ -18,8 +18,8 @@ module.exports = [
         ]
     },
     {
-        "ID": "Transport",
-        "Text": "Transport options: 1. Free, 2. Public",
+        "ID": "Transportation",
+        "Text": "Transportation options: 1. Free, 2. Public",
         "Choices": [
             {"option": 1, "nextState": "End"},
             {"option": 2, "nextState": "End"}
