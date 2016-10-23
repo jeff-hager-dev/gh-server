@@ -31,7 +31,7 @@ module.exports = [
     {
         "ID": "Housing",
         "Type": "static",
-        "Text": " What kind of help do you need for housing: 1. Shelter, 2. Housing Assistance",
+        "Text": " What kind of help do you need for housing: 1. Shelter, 2. Rent and Mortgage",
         "Choices": [
             {"option": 1, "nextState": "Shelter"},
             {"option": 2, "nextState": "HousingAssistance"}

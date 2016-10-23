@@ -27,7 +27,10 @@ var getQuestionInfo  = function(type, done){
   getClientConnection(function(clients){
     var cursor = [];
 
-    var cursor = clients.find({$or: [ { Type: 'Housing Assistance' }, { Type: 'Shelter' } ]},{_id: 0, Name: 1, Phone: 1, Subtype: 1, "Resources Available": 1}).sort({Name:1}).limit(2);
+    var cursor = clients.find({$or: [ { Type: 'Housing Assistance' }, { Type: 'Shelter' } ]},{_id: 0, Name: 1, Phone: 1, Subtype: 1})
+      .sort({"Resources Available":-1})
+      .limit(2);
+
     cursor.toArray(function(err, docs){
       var choices = [];
       var text = "";
