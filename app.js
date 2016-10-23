@@ -5,44 +5,49 @@ const bodyParser = require('body-parser');
 var phone = require('./phone');
 
 mongoUtil.connect();
-
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
 app.use(bodyParser.json());
 
 phone(app);
 
-app.get("/resource/:type", function(req, res) {
-    mongoUtil.resources().find({ type: req.params.type },
+app.get("/resource/:type", function (req, res) {
+    mongoUtil.resources().find({Type: req.params.type},
         {fields: {_id: 0}})
-        .toArray(function(err, docs){
-        var resources = docs.map(function(resource){
-            return resource;
+        .toArray(function (err, docs) {
+            var resources = docs.map(function (resource) {
+                return resource;
+            });
+            res.send(resources);
         });
-        res.send(resources);
-    });
 });
 
-app.get("/resource/:type/:subType", function(req, res) {
+app.get("/resource/:type/:subType", function (req, res) {
     mongoUtil.resources()
-        .find({ type: req.params.type,
-                subTypes: req.params.subType },
+        .find({
+                Type: req.params.type,
+                SubType: req.params.subType
+            },
             {fields: {_id: 0}})
-        .toArray(function(err, docs){
-        var resources = docs.map(function(resource){
-            return resource;
+        .toArray(function (err, docs) {
+            var resources = docs.map(function (resource) {
+                return resource;
+            });
+            res.send(resources);
         });
-        res.send(resources);
-    });
 });
 
-app.get("/client", function(req, res){
-   mongoUtil.clients()
-       .find(searchObject(req.query), {fields: {_id: 0}})
-       .toArray(function (err, docs) {
-           var clients = docs.map(function(client){
-              return client;
-           });
-           res.send(clients);
-       });
+app.get("/client", function (req, res) {
+    mongoUtil.clients()
+        .find(searchObject(req.query), {fields: {_id: 0}})
+        .toArray(function (err, docs) {
+            var clients = docs.map(function (client) {
+                return client;
+            });
+            res.send(clients);
+        });
 });
 
 app.post("/client", function (req, res) {
@@ -57,15 +62,16 @@ app.listen(3000, function () {
     console.log('App listening on port 3000!');
 });
 
-function GetRegex(val){
+function GetRegex(val) {
     var value = (val == undefined ? '' : val);
-    return new RegExp(".*"+value +".*", 'i');
+    return new RegExp(".*" + value + ".*", 'i');
 }
 
-function searchObject(query){
+function searchObject(query) {
     return {
         firstName: GetRegex(query.firstName),
         lastName: GetRegex(query.lastName),
         ssn: GetRegex(query.ssn),
+        username: GetRegex(query.username),
     }
 }

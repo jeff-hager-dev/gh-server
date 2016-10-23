@@ -27,15 +27,16 @@ var getQuestionInfo  = function(type, done){
   getClientConnection(function(clients){
     var cursor = [];
 
-    var cursor = clients.find({$or: [ { Type: 'Housing Assistance' }, { Type: 'Shelter' } ]},{_id: 0, Name: 1, Phone: 1, Subtype: 1}).sort({Name:1}).limit(2);
+    var cursor = clients.find({$or: [ { Type: 'Housing Assistance' }, { Type: 'Shelter' } ]},{_id: 0, Name: 1, Phone: 1, Subtype: 1, "Resources Available": 1}).sort({Name:1}).limit(2);
     cursor.toArray(function(err, docs){
       var choices = [];
       var text = "";
       for(var i  = 0; i < docs.length; i++){
         var doc = docs[i];
         var optionNumber = i+1;
-        text+= optionNumber+'. '+ doc.Name+' for '+doc.Subtype+', ';
-        choices.push( {"option": optionNumber, "nextState": "Call", "phoneNumber": doc.Phone});
+        text+= optionNumber+'. '+ doc.Name+' for '+doc.Subtype+' with ' + doc["Resources Available"] + ' resources available' ;
+        console.log("doc ", doc);
+        choices.push( {"option": optionNumber, "nextState": "Call", "phoneNumber": doc.Phone, "resourcesAvailable": doc["Resources Available"]});
       }
       done(null, text, choices);
     });
