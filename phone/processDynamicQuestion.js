@@ -33,8 +33,9 @@ var getQuestionInfo  = function(type, done){
       var text = "";
       for(var i  = 0; i < docs.length; i++){
         var doc = docs[i];
-        text+= (i+1)+'. '+ doc.Name+' for '+doc.Subtype+', ';
-        choices.push( {"option": i+1, "nextState": "call", "phoneNumber": doc.Phone});
+        var optionNumber = i+1;
+        text+= optionNumber+'. '+ doc.Name+' for '+doc.Subtype+', ';
+        choices.push( {"option": optionNumber, "nextState": "Call", "phoneNumber": doc.Phone});
       }
       done(null, text, choices);
     });
@@ -47,18 +48,17 @@ var buildTropoObject = function(result, currentQuestion, text, choices, done){
 
   var say = new Say(text);
 
-  var choices = new Choices(_.map(choices, "option").join(','));
+  var choicesStr = new Choices(_.map(choices, "option").join(','));
 
 
   // Action classes can be passes as parameters to TropoWebAPI class methods.
-  tropo.ask(choices, 3, false, null, "choice", null, true, say, 5, config.voice);
+  tropo.ask(choicesStr, 3, false, null, "choice", null, true, say, 5, config.voice);
 
   tropo.on("continue", null, states.next, true);
   tropo.on("error", null, states.end, true);
 
   currentQuestion.Text = text;
   currentQuestion.Choices = choices;
-  console.log("currentQuestion ", currentQuestion);
   calls.addCallerInfo(result.callId, currentQuestion);
 
   return done(null, tropo);
